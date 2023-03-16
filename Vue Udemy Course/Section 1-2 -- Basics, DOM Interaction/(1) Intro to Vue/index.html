@@ -1,0 +1,37 @@
+
+<!-- Lessons: establish connection to Vue running in browser. "v-model" tag
+              In Vue we declare the desire end result, not how we get there. 
+              Vue uses HTML attributes to connect HTML code to data and logic 
+              managed in the Vue app. This is a declarative approach NOT an 
+              imperative approach. So this means that we are declare code that describes our end goal
+              rather than writing every step necessary to get to our goal
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A First App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- This div contains all the Vue code, so this div should be the one in control of the app -->
+    <div id="app">
+      <div>
+        <label for="goal">Goal</label>
+         <!-- note that Vue attributes are declared in the HTML page to establish connection to the JS 
+          running in the broswer -->
+        <input type="text" id="goal" v-model="enteredValue" />
+        <button v-on:click="addGoal">Add Goal</button>
+      </div>
+      <ul>
+        <li v-for="goal in goals">{{ goal }}</li>
+      </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

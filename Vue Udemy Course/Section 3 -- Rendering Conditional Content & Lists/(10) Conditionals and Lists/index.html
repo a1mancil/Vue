@@ -1,0 +1,123 @@
+<!-- Lessons: Adding Items from list, and removing Items,
+  v-else must have a direct neighbor as v-if. Learned about v-if, v-else 
+  and v-else-if. v-show. v-for. v-if removes elements from DOM. v-show hides
+  elements with css. Use v-show if you are constantly going to change visibility
+  status of an element. Note that v-if removes elements from the DOM and hence can
+  cause performance issues if elements are being constantly removed from DOM -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="goal"/>
+      <button @click="addGoal">Add Goal</button>
+      <p v-if="goals.length === 0">
+        No goals have been added yet - please start adding some!
+      </p>
+      <!-- v-else has to have its direct neighbor as an if -->
+      <ul v-else="goals.length > 0">
+        <!-- Note that the myGoal variable can be named whatever. Make sure to use
+             the name of the variable being used to iterate through goals, in this
+             case "myGoal". Note that the scope of the myGoal variable will be
+             dependent on where the variable is declared. Can also access the index.
+            
+             Strange bug: Vue has a feature that if not used properly may produce a
+             bug. Vue reuses DOM elements, the element is overwritten: the 
+             neighboring element who's index is greater will be it's successor along
+             with the first elements value. This is this case when there is more
+             than 2 elements in an array of DOM elements.
+             Vue takes content of the first element i.e. the element you're trying
+             to delete and moves it to the bottom/next
+             element. E.g.:
+
+                In example below, Hike was entered as first goal then Surfing
+                 ---------              ----------
+                 | Hike  |  Del Hike    |Surfing |            
+                 | [   ] |              |[   ]   |
+                 ---------     ===>     ----------  
+                 ----------              
+                 |Surfing |            
+                 |[100]   |
+                 ----------             
+                                ~OR~
+                 ---------              ----------
+                 | Hike  |  Del Hike    |Surfing |            
+                 | [100] |              |[100]   |
+                 ---------     ===>     ----------  
+                 ----------              
+                 |Surfing |             
+                 |[   ]   |
+                 ----------              
+
+
+             IMPORTANT: THIS IS A BUG IF VUE FEATURE ISN'T UNDERSTOOD
+             THIS BEHAVIOR PROPAGATES, which means that the above
+             behavior will happen with more than 2 elements:
+
+                 ---------              ----------
+                 | Hike  |  Del Hike    |Surfing |            
+                 | [111] |              |[111]   |
+                 ---------     ===>     ----------  
+                 ----------             ----------
+                 | Surfing|             |Running |            
+                 | [222]  |             |[222]   |
+                 ----------             ---------- 
+                 ----------              
+                 |Running |            
+                 |[333]   |
+                 ----------  
+             
+             Good habit to always use key attribute when using v-for. Remember ":"
+             is shorthand for v-bind note for the key value, we need to come up 
+             with a good way to make Keys unique. Vue is able to tell the difference
+             between elements with the key attribute. Note that we are assuming 
+             that the goals types will always be different. Use the key attri 
+             to not lost state. Note that myGoal is a local variable-->
+        <li  v-for="(myGoal, index) in goals"
+             :key="myGoal"
+             @click="removeGoal(index)">
+             <p>{{myGoal}} - {{index}}</p>
+             
+             <!-- Event modifier, stops propagation, click on input registers but click
+             on outer list item doesn't, Basically stops propigation of click.
+               -->
+             <input type="text" @click.stop>
+        </li>
+      </ul>
+
+      <!-- An example of looping through objects, can access key, index and value -->
+      <!-- <ul >
+        <li v-for="(value, key, index) in {name: 'Max', age: 31}"> {{name}}:{{key}}:{{index}}</li>
+      </ul> -->
+
+      <!-- Iterate through a range of numbers -->
+      <!-- <ul >
+        <li v-for="num in 10"> {{num}}</li>
+      </ul> -->
+
+      <!-- Here we are using v-show as an example -->
+      <!-- <p v-show="goals.length === 0">No goals have been added yet - please start adding some!</p> -->
+      <!-- v-else has to have its direct neighbor as an if -->
+      <!-- <ul v-show="goals.length > 0">
+        <li>Goal</li>
+      </ul> -->
+
+    </section>
+  </body>
+</html>

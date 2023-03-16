@@ -1,0 +1,86 @@
+<!-- Lessons: Event Modifiers. Event Listener vs Event Handler. Event Handler Arguments. 
+     Event Payload argument "event" (Special first argument in method that handles
+     event i.e. the event handler). Event Listener in Vue e.g. "v-on:click" listens
+     to event then triggers Event Handler in Vue e.g. add(10) i.e. all the code 
+     after event has been triggered. Learned how the code is more dynamic by not 
+     hard coding values & instead overrriding Event Arguments.
+     Dont want to put logic in html code. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+       <!-- A the special "event" argument which contains the PointerEvent Obj 
+            would have been passed if the add method would have not passed 10 
+            as the argument. -->
+      <button v-on:click="add(10)">Add 10</button> 
+      <!-- Can also write "@" instead of "v-on" -->
+      <!-- Modifier that specifies when the event occurs. Will reduce on right click
+           can also have following modifiers: .left (default), .middle  -->
+      <button @click.right="reduce(10)">Reduce 10 on right click only</button>
+      
+      <!-- v-once allows to fix the initial value of any data field -->
+      <p v-once>Starting Counter: {{ counter }}</p>
+      <p>Result: {{ counter }}</p>
+      <!-- Vue can detect that "setSomeText" is a method -->
+      <!-- Input html tag vs input event attribute:
+          When the input event attribute (to the right of ":") fires (i.e. is
+          triggered by someone typing) the event payload is passed as the first 
+          argument of the method specified to handle the event. In this case 
+          "setSomeText" is passed an "InputEvent Obj" argument by default and 
+          it is up to the developer to either use it, or override the argument. 
+          In our case, we will use the InputEvent Obj in our js to access the 
+          entire value the user has entered via 
+          "[InputEvent Obj Argument].target.value" -->
+      <input type="text" v-on:input="setSomeText"> 
+      <p>Type something: {{ someText }}</p>
+
+      <!-- If we desire to use the event payload and add more desired arguments e.g.
+           a last name, we must use the word "event" along with the "$" identifier 
+           i.e. "$event", and set that as the first argument of the method.   -->
+           <!-- Can also have more than one event listener & handler, keyup is when
+                any key is pressed and released, then with modifier enter, only will
+                execute when enter key is pressed  -->
+      <input 
+        type="text" 
+        v-on:input="setFullName($event, ' Mancilla Valdez')" 
+        v-on:keyup.enter="confirmInput"
+      /> 
+      <!-- Confirmed name should only be displayed when user hits the enter key -->
+      <p>Your Name: {{ confirmedName }}</p>
+
+
+      <!-- When we hit the button it will send an http request to the server serving 
+      this app. We have no server in our case because we are running it locally, but 
+      the browser still sends a request to our local machine. When you're using Vue, 
+      you want to prevent the browser default of sending an http request to our 
+      local server and handle it manually, read & validate in the Vue app using js, 
+      then send it manually to backend server (e.g. store in database). Goal is to 
+      prevent browser default of automatically sending http request to backend server
+      because we usally want to parse the data. Vue app will restart when button is
+      hit. -->
+      <!-- Below is the event modifier "prevent". This event modifier changes the 
+           browser behavior  -->
+      <form v-on:submit.prevent="submitForm">
+        <input type="text">
+        <button>Sign Up</button>
+      </form>
+
+    </section>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!-- Lessons: interplation (between html tag) & v-bind (on html attribute), 
+              data returned from "methods", using basic javascript 
+              expressions between the mustache syntax, made app more dynamic
+              by adding "methods" section. Outputting Raw HTML content with "v-html" (Not recommended)
+              Define Goal, define template -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goal">
+      <h2>My Course Goal</h2>
+       <!-- Interpolation is between HTML tag.
+        Most basic form of data binding is text interpolation using 
+        the “Mustache” syntax. Between curlies we can reference return 
+        data object in Vue.
+        This is known as interpolation. Def of interpolation:
+        the insertion of something of a different nature into something else.
+        Here we are binding data we get in vue to this section of the  -->
+        <p>{{ courseGoalA }}</p>
+      <p>{{1+1}}</p> <!-- can have basic javascript expressions here -->
+      <p>{{outputGoal()}}</p> <!-- calling a method -->
+      <p>Learn more 
+        <a v-bind:href="vueLink"> 
+          about DuckDuckGo
+        </a>
+      </p> <!-- If you need to set value on an atribute, use "v-bind".
+                Use : to show which value to set vue attribute
+                to. -->
+      <p v-html="courseGoalC"></p> <!-- output as html via accessing data from vue
+                                   app directly. Not recommended.-->
+      <p v-html="outputHTML()"></p> <!-- output as html via accessing methods which 
+                                   return data from vue app directly. Not recommended.-->
+
+    </section>
+  </body>
+</html>

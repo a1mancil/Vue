@@ -1,0 +1,79 @@
+<!-- Lessons: Dynamic Inline Style vs Dynamic Class Style. How to select and deselect a div. Dynamically declared vs statically
+          declared classes. Using computed properties to declare classes. Using
+          array of classes i.e. :class="['demo', {active: boxBSelected}]" 
+          Change the style of page with Vue at runtime
+          Up to this point I have learned about data binding and event binding
+          (interpolation), Vue reactivity with compute properties and watchers.
+          Now it's time for styling. 
+        -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- Dynamic Line Style Notes -->
+      <!-- Can listen to clicks on any html element. Remember that ":" means v-bind.
+          Regular html style tag:    style="boarder-color: red;"
+          Vue style tag:            :style="{borderColor: 'red'}" 
+          
+          Note that #ccc is a grey color. The ternary below is saying that if the
+          box that was selected was box A, then the boarder of the box will be color
+          red, else just keep it grey i.e. #ccc
+
+          Problem with this way of declaring style, inline style:
+            :style="{borderColor: boxASelected ? 'red' : '#ccc'}" 
+          Is that it will overule all other styles
+
+          If box A is selected then bind the two css classes demo & ative
+          to the div, else only bind one class -- demo
+
+          Draw back to using :class="boxASelected ? 'demo active' : 'demo'" is that
+          it is very hard to read.
+
+          A better way to change the style dynamically is:
+            :class="{demo: true, active: boxASelected}" 
+          Since it's more readable
+
+          The better way to change style dynamically is via:
+            class="demo"
+            :class="{active: boxASelected}" 
+          This is because the first class attribute refers to the styles that are 
+          statically declared. The class attribute with the colin reference ":"
+          refers to styles which are dynamically declared at runtime. Here there is
+          a separation of css classes which are statically and dynamically declared. 
+          
+          We can finally store the dynamically types class in a computed property
+          as seen below
+        -->
+      <div
+            class="demo"
+            :class="boxAClasses" 
+            @click="boxSelected('A')">
+      </div>
+      <!-- You can also delcare an array of classes that a div would include -->
+      <div 
+            :class="['demo', boxBClasses]" 
+            @click="boxSelected('B')">
+      </div>
+      <div 
+            class="demo"
+            :class="boxCClasses" 
+            @click="boxSelected('C')">
+      </div>    </section>
+  </body>
+</html>

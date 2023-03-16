@@ -1,0 +1,104 @@
+<!-- IMPORTANT: "Methods aren't the best solution for outputing some dynamic 
+    calculated value." See explanation above <p>Your Name: 
+    {{ outputFullname() }}</p> for more details.
+
+    Lessons: Two way binding: value binding (getting value) and event listening
+    (setting value). 
+    It's a common protocol that vue has a built in directive that
+    acheives both getting and setting a value -- v-model. v-model is a
+    short cut for v-bind:value and v-on:input e.g. <input type="text" 
+    v-bind:value="name" v-on:input="setName($event, 'Schwarzmüller')"> turns into
+    <input type="text" v-model="name">   
+  
+    Take aways: DOM Interaction, Templates & Data Binding (make part of DOM 
+    template of Vue application via "mounting" method), Event Handling (v-on 
+    & v-model) 
+    
+
+    Summary: Methods should be used with event binding or data binding. In Data
+    Binding method is executed for every "rerender" cycle of the component.
+    Use for events or data that need to be reevaluated all the time.
+
+
+    Computed used with data binding only. Computed are only re-evaluated if one of
+    their "used values". Use for data that depends on other data.
+
+    Watchers are not directly used in the template. Watchers allow to run code in
+    reaction to some changed data. Use for any non-data update you want to make i.e.
+    any behind the scenes changes
+
+    Can also have access to the old value as the second parameter and the lastest
+    value in the first
+    e.g. name(latestValue, oldValue){}
+
+    Shorthands: Replace v-on with @ AND can also replace v-bind with a single ":"`.
+                There is no shorthand for v-model
+    
+    -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+      <h2>Events in Action</h2>
+      <!-- replace v-on with @ AND can also replace v-bind with a single ":" -->
+      <button @click="add(10)">Add 10</button>
+      <button @click="reduce(5)">Subtract 5</button>
+      <p>Result: {{ counter }}</p>
+      <!-- Note cant just declare value="name" below, must be v-bind:value="name" 
+           bc name will be changing dynamically -->
+      <!-- <input type="text" v-bind:value="name" 
+            v-on:input="setName($event, 'Schwarzmüller')"> -->
+      <!-- Note that v-model is a short cut for v-bind:value & v-on:input -->
+      <input type="text" v-model="name">
+      <input type="text" v-model="lastName">
+      <button @click="resetInput"> Reset Input</button>
+      <!-- "Methods aren't the best solution for outputing some dynamic calculated
+           value". Everytime you declare a method between two curly braces i.e.
+           between the mustache syntax, Vue will execute the method everytime
+           there is a change in the page bc Vue doesn't know if the change being
+           triggered is using the method between the mustache syntax or not.
+           This can devastate the preformance of web app bc it will constantly 
+           trigger every method between the mustache syntax -->
+
+      <!-- <p>Your Name: {{ outputFullname() }}</p>  -->
+
+      <!-- One way to avoid problem above is, however too much logic in our html
+           code: Solution, use "computed properties". Similar to methods except, Vue
+           will be aware of their dependencies and only reexecute them if one of the
+           dependencies changed
+
+      <p>Your Name: {{ name + ' ' + 'Mancilla' }}</p>  -->
+
+      <!-- Solution: computed properties -->
+
+      <!-- Vue will first look in the data configuration for 'fullName', then in
+           looks in computed config. Vue is aware of the dependencies of the
+           computed properties and will cache the computed property value and only
+           recalculate it if a dependency changes. If you only want to recalculate
+           a value when a dependency changes use computed properties.
+
+           Bind events to methods, DO NOT bind events to computed properties. Only
+           use computed properties to output something. Make sure to point at the
+           computed property and not call it via "()"
+       -->
+      <p>Your Name: {{ fullName }}</p> 
+
+    </section>
+  </body>
+</html>
