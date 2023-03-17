@@ -2,7 +2,9 @@
     calculated value." See explanation above <p>Your Name: 
     {{ outputFullname() }}</p> for more details.
 
-    Lessons: Two way binding: value binding (getting value) and event listening
+    LESSONS: v-model is a short cut for v-bind:value & v-on:input ---
+
+    Two way binding: value binding (getting value) and event listening
     (setting value). 
     It's a common protocol that vue has a built in directive that
     acheives both getting and setting a value -- v-model. v-model is a
@@ -10,7 +12,7 @@
     v-bind:value="name" v-on:input="setName($event, 'Schwarzmüller')"> turns into
     <input type="text" v-model="name">   
   
-    Take aways: DOM Interaction, Templates & Data Binding (make part of DOM 
+    TAKE AWAYS: DOM Interaction, Templates & Data Binding (make part of DOM 
     template of Vue application via "mounting" method), Event Handling (v-on 
     & v-model) 
     
