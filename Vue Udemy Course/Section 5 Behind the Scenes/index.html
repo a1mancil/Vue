@@ -1,4 +1,6 @@
-<!-- Lessons: 'Proxies' in javaScript, Vue uses js proxies, see bottom of app.js for more details. -->
+<!-- Lessons: 'Proxies' in javaScript, Vue uses js proxies, see bottom of app.js 
+     for more details. Editing the styles sheet file to accomidate for app2. Each
+     Vue app is independent from one another -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +25,11 @@
       <input type="text" @input="saveInput">
       <button @click="setText">Set Text</button>
       <p>{{ message }}</p>
+    </section>
+    <section id="app2">
+      <!-- Cannot call the data property of the first Vue app in "app2"
+      <p>{{ message }}</p> -->
+      <p>{{ favoriteMeal }}</p>
     </section>
   </body>
 </html>

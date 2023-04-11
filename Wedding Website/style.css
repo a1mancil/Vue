@@ -1,0 +1,171 @@
+
+/* Remember that a div that has the property 
+"position: relative" is the parent of divs with
+property "position: absolute" 
+*/
+header, .centerDiv{
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+/* Fix issues when resizing */
+body{
+  background-color: rgb(220,220,220);
+  position: absolute;
+  width: 100%;
+}
+
+.MyWrapper{
+  max-width: 1500px;
+ margin: auto;
+ background: white;
+ padding: 10px;
+
+}
+
+img {
+  width: 300px;
+  height: 200px;
+  display: block;
+}
+.img1Div{
+  position: absolute;
+  top: 25px;
+  left: 20px;
+}
+.img2Div{
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}
+
+.p1 {
+  font-family: "Brush Script MT", Times, serif;
+  font-size: 430%;
+}
+.p2 {
+  font-family:Times, serif;
+  font-size: 400%;
+}
+.paddingOfTitle {
+  padding-top: 100px;
+}
+
+.weddingInfo1{
+  font-family:serif;
+  font-size: 150%;
+}
+
+
+
+/* TODO */
+
+/* Reduce by 15% */
+@media screen and (max-width:1225px)
+{
+  .paddingOfTitle {
+    padding-top: 83px;
+  }
+  
+  img {
+    width: 300px;
+    height: 200px;
+    display: block;
+  }
+  .img1Div{
+    position: absolute;
+    top: 25px;
+    left: 20px;
+  }
+  .img2Div{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+  }
+  
+  .p1 {
+    font-family: "Brush Script MT", Times, serif;
+    font-size: 350%;
+  }
+  .p2 {
+    font-family:Times, serif;
+    font-size: 220%;
+  }
+  .weddingInfo1{
+    font-family:serif;
+    font-size: 110%;
+  }
+}
+
+/* Reduce by 25% */
+@media screen and (max-width:1000px)
+{
+  .paddingOfTitle {
+    padding-top: 50px;
+  }
+  img {
+    width: 230px;
+    height: 130px;
+    display: block;
+  }
+  .img1Div{
+    position: absolute;
+    top: 30px;
+    left: 15px;
+  }
+  .img2Div{
+    position: absolute;
+    top: 30px;
+    right: 15px;
+  }
+  
+  .p1 {
+    font-family: "Brush Script MT", Times, serif;
+    font-size: 300%;
+  }
+  .p2 {
+    font-family:Times, serif;
+    font-size: 200%;
+  }
+  .weddingInfo1{
+    font-family:serif;
+    font-size: 90%;
+  }
+}
+
+/* Reduce by 40% */
+@media screen and (max-width:830px)
+{
+  .paddingOfTitle {
+    padding-top: 50px;
+  }
+  img {
+    width: 200px;
+    height: 100px;
+    display: block;
+  }
+  .img1Div{
+    position: absolute;
+    top: 50px;
+    left: 15px;
+  }
+  .img2Div{
+    position: absolute;
+    top: 50px;
+    right: 15px;
+  }
+  
+  .p1 {
+    font-family: "Brush Script MT", Times, serif;
+    font-size: 250%;
+  }
+  .p2 {
+    font-family:Times, serif;
+    font-size: 150%;
+  }
+  .weddingInfo1{
+    font-family:serif;
+    font-size: 70%;
+  }
+}
