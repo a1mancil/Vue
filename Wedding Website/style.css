@@ -1,43 +1,42 @@
 
-/* Remember that a div that has the property 
-"position: relative" is the parent of divs with
-property "position: absolute" 
+/* front end: 
+	  CSS Property and more notes:
+		> Position -- relative vs absolute i.e. parent vs children
+		Relative, absolute, fixed, static, sticky: 
+		https://www.freecodecamp.org/news/css-position-property-explained/
+		> Display -- 
+		> Id vs class -- Id can be only used once, class can be used multiple times
+	  	> JavaScript accesses and manipulates DOM elements.
+		> Attribute vs property -- Properties belong to the DOM. Since DOM is an
+		  object in HTML, properties belong to the DOM. Since DOM is an object in 
+		  JavaScript, we can get and set properties. Attributes are used to customize
+		  tags, they are defined by HTML 
 */
-header, .centerDiv{
-  display: flex;
-  position: relative;
-  justify-content: center;
-}
 
-/* Fix issues when resizing */
+/* Resizing, background color light grey */
 body{
   background-color: rgb(220,220,220);
-  position: absolute;
-  width: 100%;
+  margin: auto; /*let the browser determine margin */
 }
 
 .MyWrapper{
-  max-width: 1500px;
- margin: auto;
- background: white;
- padding: 10px;
-
+  max-width: 1550px;
+  background: white;
+  margin: auto; /* Will center the div, let the browser determine margin */
 }
+
+header{
+  display: flex;
+  justify-content: space-between;
+  padding: 1%; /* Padding Percentage is Based 
+                  on the Parent Element’s Width */
+  height: 200px;  /*change as the resolution changes */
+}
+
 
 img {
   width: 300px;
   height: 200px;
-  display: block;
-}
-.img1Div{
-  position: absolute;
-  top: 25px;
-  left: 20px;
-}
-.img2Div{
-  position: absolute;
-  top: 25px;
-  right: 20px;
 }
 
 .p1 {
@@ -46,126 +45,267 @@ img {
 }
 .p2 {
   font-family:Times, serif;
-  font-size: 400%;
+  font-size: 270%;
 }
-.paddingOfTitle {
-  padding-top: 100px;
+.p3 {
+  font-family:Times, serif;
+  font-size: 100%;
 }
-
-.weddingInfo1{
-  font-family:serif;
-  font-size: 150%;
-}
-
-
 
 /* TODO */
 
-/* Reduce by 15% */
-@media screen and (max-width:1225px)
-{
-  .paddingOfTitle {
-    padding-top: 83px;
-  }
-  
-  img {
-    width: 300px;
-    height: 200px;
-    display: block;
-  }
-  .img1Div{
-    position: absolute;
-    top: 25px;
-    left: 20px;
-  }
-  .img2Div{
-    position: absolute;
-    top: 25px;
-    right: 20px;
-  }
-  
-  .p1 {
-    font-family: "Brush Script MT", Times, serif;
-    font-size: 350%;
-  }
-  .p2 {
-    font-family:Times, serif;
-    font-size: 220%;
-  }
-  .weddingInfo1{
-    font-family:serif;
-    font-size: 110%;
-  }
-}
+/* 1) Good */
+ @media screen and (max-width:1175px)
+ {
+    header{
+      height: 155px; 
+    }
+    img {
+      width: 250px;
+      height: 150px;
+      /* margin-top: 20px; */
+    }
 
-/* Reduce by 25% */
-@media screen and (max-width:1000px)
-{
-  .paddingOfTitle {
-    padding-top: 50px;
-  }
-  img {
-    width: 230px;
-    height: 130px;
-    display: block;
-  }
-  .img1Div{
-    position: absolute;
-    top: 30px;
-    left: 15px;
-  }
-  .img2Div{
-    position: absolute;
-    top: 30px;
-    right: 15px;
-  }
-  
-  .p1 {
-    font-family: "Brush Script MT", Times, serif;
-    font-size: 300%;
-  }
-  .p2 {
-    font-family:Times, serif;
-    font-size: 200%;
-  }
-  .weddingInfo1{
-    font-family:serif;
-    font-size: 90%;
-  }
-}
+    .p1 {
+       font-size: 330%;
+    }
+    .p2 {
+      font-size: 180%;
+    }
+    .p3 {
+      font-size: 80%;
+    }
+ }
+/* 2) good
+ @media screen and (max-width:1025px)
+ {
+    header{
+       height: 160px; 
+    }
+    img {
+      width: 230px;
+      height: 130px;
+    }
 
-/* Reduce by 40% */
-@media screen and (max-width:830px)
-{
-  .paddingOfTitle {
-    padding-top: 50px;
+    .p1 {
+       font-size: 330%;
+    }
+    .p2 {
+      font-size: 200%;
+    }
+    .p3 {
+      font-size: 75%;
+    }
+ } */
+
+/* 3) Good */
+ @media screen and (max-width:950px)
+ {
+    header{
+      height: 125px;
+    }
+    img {
+      width: 220px;
+      height: 120px;
+    }
+    .p1 {
+       font-size: 265%;
+    }
+    .p2 {
+      font-size: 150%;
+    }
+    .p3 {
+      font-size: 70%;
+    }
+ }
+/* 4) Good */
+ /* @media screen and (max-width:844px)
+ {
+
+    header{
+      height: 130px;
+    }
+    img {
+      width: 200px;
+      height: 100px;
+    }
+    .p1 {
+       font-size: 280%;
+    }
+    .p2 {
+      font-size: 170%;
+    }
+    .p3 {
+      font-size: 68%;
+    }
+ } */
+
+/* 5) Good */
+ @media screen and (max-width:805px)
+ {
+    header{
+      height: 90px;
+    }
+    img {
+      width: 190px;
+      height: 90px;
+    }
+    .p1 {
+       font-size: 200%;
+    }
+    .p2 {
+      font-size: 120%;
+    }
+    .p3 {
+      font-size: 55%;
+    }
+ }
+
+ /* 6) Good */
+ /* @media screen and (max-width:725px)
+ {
+    header{
+      height: 100px;
+    }
+    img {
+      width: 170px;
+      height: 75px;
+    }
+    .p1 {
+       font-size: 210%;
+    }
+    .p2 {
+      font-size: 140%;
+    }
+    .p3 {
+      font-size: 60%;
+    }
+ } */
+ /* 7) Good */
+ @media screen and (max-width:660px)
+ {
+    header{
+      height: 85px;
+    }
+    img {
+      width: 170px;
+      height: 80px;
+    }
+    .p1 {
+       font-size: 180%;
+    }
+    .p2 {
+      font-size: 100%;
+    }
+    .p3 {
+      font-size: 45%;
+    }
+ }
+ /* 8) Good */
+  @media screen and (max-width:590px)
+ {
+    header{
+      height: 75px;
+    }
+    img {
+      width: 160px;
+      height: 70px;
+    }
+    .p1 {
+       font-size: 150%;
+    }
+    .p2 {
+      font-size: 90%;
+    }
+    .p3 {
+      font-size: 40%;
+    }
+ } 
+
+ /* 9) Good */
+ /* @media screen and (max-width:492px)
+ {
+    header{
+      height: 70px;
+    }
+    img {
+      width: 90px;
+      height: 45px;
+    }
+    .p1 {
+       font-size: 150%;
+    }
+    .p2 {
+      font-size: 90%;
+    }
+    .p3 {
+      font-size: 40%;
+    }
+ } */
+
+  /* 10) Good */
+  @media screen and (max-width: 533px)
+  {
+     header{
+       height: 65px;
+     }
+     img {
+       width: 140px;
+       height: 60px;
+     }
+     .p1 {
+        font-size: 135%;
+     }
+     .p2 {
+       font-size: 80%;
+     }
+     .p3 {
+       font-size: 35%;
+     }
   }
-  img {
-    width: 200px;
-    height: 100px;
-    display: block;
-  }
-  .img1Div{
-    position: absolute;
-    top: 50px;
-    left: 15px;
-  }
-  .img2Div{
-    position: absolute;
-    top: 50px;
-    right: 15px;
-  }
-  
-  .p1 {
-    font-family: "Brush Script MT", Times, serif;
-    font-size: 250%;
-  }
-  .p2 {
-    font-family:Times, serif;
-    font-size: 150%;
-  }
-  .weddingInfo1{
-    font-family:serif;
-    font-size: 70%;
-  }
-}
+
+    /* 11) Good */
+    @media screen and (max-width: 475px)
+    {
+       header{
+         height: 55px;
+       }
+       img {
+         width: 115px;
+         height: 50px;
+       }
+       .p1 {
+          font-size: 115%;
+       }
+       .p2 {
+         font-size: 80%;
+       }
+       .p3 {
+         font-size: 25%;
+       }
+    }
+
+    /* 12) Good */
+    @media screen and (max-width: 395px)
+    {
+       header{
+         height: 45px;
+       }
+       img {
+         width: 90px;
+         height: 40px;
+       }
+       .p1 {
+          font-size: 92%;
+       }
+       .p2 {
+         font-size: 65%;
+       }
+       .p3 {
+         font-size: 10%;
+       }
+    }
+
+    /* IMPORTANT: */
+    /* Minimum screen size is 320px */
+
